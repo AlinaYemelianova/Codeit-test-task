@@ -8,3 +8,21 @@
 .checkbox label{
   padding-left: 0px;
 }
+.checkbox label.error{
+  min-width: 400px;
+  margin-top: 20px;
+  font-weight: bold;
+}
+
+.form-group{
+  position: relative;
+}
+i.fa{
+  position: absolute;
+  top: 8px;
+  left: 6px;
+  font-size: 20px;
+}
+.form-control{
+  padding: 6px 30px;
+}
