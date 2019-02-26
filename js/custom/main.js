@@ -12,7 +12,7 @@ $(document).ready(function () {
         placeholder: 'Gender'
     });
     //Init Jquery Validate plugin
-    $("#form").validate({
+    let validator = $("#form").validate({
         rules: {
             firstName: {
                 required: true,
@@ -24,7 +24,7 @@ $(document).ready(function () {
             },
             password: {
                 required: true,
-                minlength:8
+                minlength:7
             },
             checkbox: {
                 required: true,
@@ -47,9 +47,28 @@ $(document).ready(function () {
             },
             password: {
                 required: 'Please enter a password',
-                minlength: 'Password can not be less than 8 characters'
+                minlength: 'Password can not be less than 7 characters'
             }
 
         }
     });
+    //Send post data
+    $('.formContent').on('click', '#submit-signup', function() {
+        if (validator.form()) {
+            const test = {
+                name: $('#firstName').val(),
+                secondname: $('#lastName').val(),
+                email: $('#email').val(),
+                gender: $('#gender :selected').val(),
+                pass: $('#password').val()
+            };
+            $.ajax({
+                type: 'POST',
+                url: 'http://codeit.pro/codeitCandidates/serverFrontendTest/user/registration',
+                data: test
+            });
+        }
+        return false;
+    });
 });
+
