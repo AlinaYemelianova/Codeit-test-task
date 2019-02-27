@@ -14,38 +14,36 @@ $(document).ready(function () {
     //Init Jquery Validate plugin
     let validator = $("#form").validate({
         rules: {
-            firstName: {
+            name: {
                 required: true,
                 minlength: 2
             },
-            lastName: {
+            secondname: {
                 required: true,
-                minlength: 3
+                rangelength: [3, 60]
             },
-            password: {
+            pass: {
                 required: true,
                 minlength:7
             },
             checkbox: {
                 required: true,
             },
-            email:{
+           email:{
                 required: true,
+                email: true
             },
-            gender:{
-                required: true,
-            }
         },
         messages:{
-            firstName: {
+            name: {
                 required: 'Please enter your first name',
                 minlength: 'At least one character'
             },
-            lastName: {
+            secondname: {
                 required: 'Please enter your last name',
                 minlength: 'At least two character'
             },
-            password: {
+            pass: {
                 required: 'Please enter a password',
                 minlength: 'Password can not be less than 7 characters'
             }
@@ -56,19 +54,31 @@ $(document).ready(function () {
     $('.formContent').on('click', '#submit-signup', function() {
         if (validator.form()) {
             const test = {
-                name: $('#firstName').val(),
-                secondname: $('#lastName').val(),
+                name: $('#name').val(),
+                secondname: $('#secondname').val(),
                 email: $('#email').val(),
                 gender: $('#gender :selected').val(),
-                pass: $('#password').val()
+                pass: $('#pass').val()
             };
             $.ajax({
                 type: 'POST',
                 url: 'http://codeit.pro/codeitCandidates/serverFrontendTest/user/registration',
-                data: test
+                data: test,
+                success: function(msg) {
+                    if (msg.status == 'Form Error') {
+                        $('#form').validate().showErrors({
+                            [msg.field]:[msg.message]
+                        });
+                    } else if (msg.status == 'Error') {
+                        $('#serverError').html(msg.message)
+                    }
+                    window.location = 'companies.html';
+                }
             });
         }
         return false;
     });
 });
+
+
 

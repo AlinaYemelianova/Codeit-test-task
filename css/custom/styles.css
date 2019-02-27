@@ -1,11 +1,11 @@
-.title {
+.title h2 {
   text-align: center; }
 
 .select2-container--default .select2-selection--single {
   border-radius: 0; }
 
 .checkbox label {
-  padding-left: 0px; }
+  padding-left: 0; }
 
 .checkbox label.error {
   min-width: 400px;
@@ -26,3 +26,13 @@ i.fa {
 
 .form-control {
   padding: 6px 30px; }
+
+.serverError {
+  text-align: center;
+  font-size: 15px;
+  color: #802c23;
+  margin-top: 20px; }
+
+@media screen and (max-width: 780px) {
+  .serverError {
+    font-size: 10px; } }
