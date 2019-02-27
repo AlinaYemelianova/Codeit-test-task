@@ -36,3 +36,120 @@ i.fa {
 @media screen and (max-width: 780px) {
   .serverError {
     font-size: 10px; } }
+.row {
+  margin-top: 40px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between; }
+
+.totalCompanies,
+.listOfCompanies {
+  position: relative;
+  width: 45%; }
+  .totalCompanies .totalCompanies__header,
+  .totalCompanies .listOfCompanies__header,
+  .listOfCompanies .totalCompanies__header,
+  .listOfCompanies .listOfCompanies__header {
+    border: 1px solid #ffffff;
+    padding: 10px;
+    font-weight: bold;
+    background-color: #1ab394;
+    color: #ffffff; }
+
+.totalCompanies__content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 250px;
+  background-color: #ffffff;
+  text-align: center; }
+  .totalCompanies__content .circle {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    border: 1px solid #1ab394;
+    width: 200px;
+    height: 200px;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    border-radius: 100px;
+    font-size: 60px; }
+
+.listOfCompanies__content {
+  height: 250px;
+  overflow-y: scroll;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  background-color: #ffffff;
+  text-align: center; }
+
+.loaderArea {
+  background: -webkit-gradient(linear, left bottom, left top, color-stop(3%, #98e2d3), color-stop(90%, #ffffff));
+  background: linear-gradient(to top, #98e2d3 3%, #ffffff 90%);
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10; }
+  .loaderArea .loader {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    border-radius: 50%;
+    -webkit-animation: loader 0.9s 0.35s ease infinite;
+            animation: loader 0.9s 0.35s ease infinite; }
+  .loaderArea::before, .loaderArea::after {
+    content: '';
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    top: 50%;
+    left: 40%;
+    border-radius: 50%;
+    -webkit-animation: loader 0.9s 0.35s ease infinite;
+            animation: loader 0.9s 0.35s ease infinite;
+    -webkit-animation-delay: 0.2s;
+            animation-delay: 0.2s; }
+  .loaderArea::after {
+    left: 60%;
+    -webkit-animation-delay: 0.5s;
+            animation-delay: 0.5s; }
+
+@-webkit-keyframes loader {
+  0% {
+    background-color: white; }
+  100% {
+    background-color: #1ab394; } }
+
+@keyframes loader {
+  0% {
+    background-color: white; }
+  100% {
+    background-color: #1ab394; } }
+tr td {
+  cursor: pointer; }
+
+.test {
+  height: 250px;
+  overflow-y: scroll; }

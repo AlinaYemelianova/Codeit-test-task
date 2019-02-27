@@ -1,4 +1,3 @@
-'use strict';
 
 $(document).ready(function () {
     // Init iCheck plugin.
@@ -78,7 +77,25 @@ $(document).ready(function () {
         }
         return false;
     });
+    //Companies Page
+    $.ajax({
+        url: 'http://codeit.pro/codeitCandidates/serverFrontendTest/company/getList',
+        success: function(data) {
+            $('#totalCompanies_sum').html(data.list.length);
+            for (let i = 0; i < data.list.length; i++){
+                $('#listOfCompanies__table tbody').append('<tr><td></td></tr>');
+                let tr = $("tr:eq(" + i + ")");
+                let td = tr.find('td');
+                td.html(data.list[i].name);
+            }
+        }
+    });
+    $preloader = $('.loaderArea');
+    $loader = $preloader.find('.loader');
+    $preloader.delay(250).fadeOut('slow');
 });
+
+
 
 
 
