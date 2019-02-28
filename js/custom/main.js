@@ -70,29 +70,109 @@ $(document).ready(function () {
                         });
                     } else if (msg.status == 'Error') {
                         $('#serverError').html(msg.message)
-                    }
-                    window.location = 'companies.html';
+                    }else{window.location = 'companies.html'}
+
                 }
             });
         }
         return false;
     });
     //Companies Page
+    const companies = [];
     $.ajax({
         url: 'http://codeit.pro/codeitCandidates/serverFrontendTest/company/getList',
         success: function(data) {
             $('#totalCompanies_sum').html(data.list.length);
             for (let i = 0; i < data.list.length; i++){
+                companies.push(data.list[i]);
                 $('#listOfCompanies__table tbody').append('<tr><td></td></tr>');
                 let tr = $("tr:eq(" + i + ")");
                 let td = tr.find('td');
                 td.html(data.list[i].name);
+                td.attr('data-name',`${data.list[i].name}${i}`);
             }
+            console.log(data.list);
         }
     });
+    //Show companies partners
+
+    function showPartners(i, arr){
+        $('.companyPartners__content').append('<div class="partnerInformation"><div class="partnerValue"></div><div class="arrow"></div><div class="partnerName"></div></div>');
+        const partnerValue = $("div.partnerValue:eq(" + i + ")");
+        const partnerName = $("div.partnerName:eq(" + i + ")");
+        partnerValue.html(`${arr[i].value}%`);
+        partnerName.html(arr[i].name);
+    }
+    function sorting(arr, val){
+        $('.companyPartners__content').html('');
+        /*
+        To sort by val, create an array containing the values to be sorted.
+         */
+        let items = arr.map(function(elem, index){
+            return elem[val]
+        });
+        /*
+        Sort values.
+         */
+        items.sort(function (a, b) {
+            if(a > b){
+                return 1
+            }
+            if(a < b){
+                return -1
+            }
+        });
+        /*
+        Compare the sorted array with the source in the loop.
+        If it matches, save the object from the original array to the new one.
+        Thus, all objects are in the sort order.
+         */
+        let sorted = items.map(function (elem) {
+            for(let i = 0; i < items.length; i++){
+                if(arr[i][val] == elem){
+                    return arr[i]
+                }
+            }
+
+        });
+        for (let i = 0; i < sorted.length; i++){
+            showPartners(i, sorted);
+        }
+    };
+    $('.listOfCompanies').on('click', 'td', function (){
+        let sort;
+        $('.companyPartners').addClass('visible');
+        $('.companyPartners__content').html('');
+        const dataName = $(this).attr('data-name');
+        for(let i = 0; i < companies.length; i++){
+            let partnersArr;
+            if (`${companies[i].name}${i}` == dataName){
+                $('.title').html(companies[i].name);
+                partnersArr = (companies[i].partners);
+                for (let i = 0; i < partnersArr.length; i++){
+                    showPartners(i, partnersArr);
+                    sort = partnersArr
+                }
+            }
+
+        }
+       $('.btn__sortValue').on('click', function (){
+            sorting(sort, 'value');
+       });
+       $('.btn__sortName').on('click', function (){
+            sorting(sort, 'name');
+       });
+       $('.btn__hideButton').on('click', function () {
+           $('.companyPartners').removeClass('visible')
+       })
+
+
+
+    });
+    //Loader
     $preloader = $('.loaderArea');
     $loader = $preloader.find('.loader');
-    $preloader.delay(250).fadeOut('slow');
+    $preloader.delay().fadeOut('slow');
 });
 
 
