@@ -91,7 +91,6 @@ $(document).ready(function () {
                 td.html(data.list[i].name);
                 td.attr('data-name',`${data.list[i].name}${i}`);
             }
-            console.log(data.list);
         }
     });
     //Show companies partners
@@ -103,30 +102,39 @@ $(document).ready(function () {
         partnerValue.html(`${arr[i].value}%`);
         partnerName.html(arr[i].name);
     }
-    function sorting(arr, val){
+
+    function sorting(arr, val, condition) {
         $('.companyPartners__content').html('');
         /*
         To sort by val, create an array containing the values to be sorted.
          */
-        let items = arr.map(function(elem, index){
-            return elem[val]
+        let items = arr.map(function(elem){
+            return elem[val];
         });
         /*
-        Sort values.
-         */
-        items.sort(function (a, b) {
-            if(a > b){
-                return 1
+       Sort values.
+        */
+        if (typeof items[0] === "string") {
+            if (condition == true) {
+                items.sort();
+            } else {
+                (items.sort()).reverse();
             }
-            if(a < b){
-                return -1
-            }
-        });
+        }else {
+            items.sort(function (a, b) {
+                if (condition == true) {
+                    return a - b;
+                } else {
+                    return b - a;
+                }
+
+            })
+        };
         /*
-        Compare the sorted array with the source in the loop.
-        If it matches, save the object from the original array to the new one.
-        Thus, all objects are in the sort order.
-         */
+       Compare the sorted array with the source in the loop.
+       If it matches, save the object from the original array to the new one.
+       Thus, all objects are in the sort order.
+        */
         let sorted = items.map(function (elem) {
             for(let i = 0; i < items.length; i++){
                 if(arr[i][val] == elem){
@@ -139,35 +147,51 @@ $(document).ready(function () {
             showPartners(i, sorted);
         }
     };
+    let sortByPercentage = false;
+    let sortByName = true;
+    let sortBy = 'value';
+    let partnersArr;
+    let sortType;
+    let sort;
     $('.listOfCompanies').on('click', 'td', function (){
-        let sort;
         $('.companyPartners').addClass('visible');
         $('.companyPartners__content').html('');
         const dataName = $(this).attr('data-name');
-        for(let i = 0; i < companies.length; i++){
-            let partnersArr;
+        for (let i = 0; i < companies.length; i++) {
             if (`${companies[i].name}${i}` == dataName){
                 $('.title').html(companies[i].name);
                 partnersArr = (companies[i].partners);
-                for (let i = 0; i < partnersArr.length; i++){
-                    showPartners(i, partnersArr);
-                    sort = partnersArr
-                }
+                sort = partnersArr;
+                sorting(partnersArr,sortBy, sortByName);
             }
-
         }
-       $('.btn__sortValue').on('click', function (){
-            sorting(sort, 'value');
-       });
-       $('.btn__sortName').on('click', function (){
-            sorting(sort, 'name');
-       });
-       $('.btn__hideButton').on('click', function () {
-           $('.companyPartners').removeClass('visible')
-       })
+    });
 
+    $('.buttons').on('click', '.btn__sortValue',function (){
+        sortBy = 'value';
+        sortByPercentage = !sortByPercentage;
+        sortType = sortByPercentage;
+        sorting(sort, 'value',sortByPercentage);
+        if (sortByPercentage) {
+            $('.btn__sortValue i').removeClass('fa-sort-numeric-asc').addClass('fa-sort-numeric-desc');
+        } else {
+            $('.btn__sortValue i').removeClass('fa-sort-numeric-desc').addClass('fa-sort-numeric-asc');
+        }
 
-
+    });
+    $('.btn__sortName').on('click', function (){
+        sortBy = 'name';
+        sortByName = !sortByName;
+        sortType = sortByName;
+        sorting(sort, 'name',sortByName);
+        if (sortByName) {
+            $('.btn__sortName i').removeClass('fa-sort-alpha-asc').addClass('fa-sort-alpha-desc');
+        } else {
+            $('.btn__sortName i').removeClass('fa-sort-alpha-desc').addClass('fa-sort-alpha-asc');
+        }
+    });
+    $('.btn__hideButton').on('click', function () {
+        $('.companyPartners').removeClass('visible');
     });
     //Loader
     $preloader = $('.loaderArea');
