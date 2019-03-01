@@ -1,59 +1,65 @@
-.title h2{
+.title h2 {
   text-align: center;
 }
 
-.select2-container--default .select2-selection--single{
+.select2-container--default .select2-selection--single {
   border-radius: 0;
 }
-.checkbox label{
+
+.checkbox label {
   padding-left: 0;
 }
-.checkbox label.error{
+
+.checkbox label.error {
   min-width: 400px;
   margin-top: 20px;
   font-weight: bold;
 }
-.icheckbox_square-green{
+
+.icheckbox_square-green {
   margin-right: 10px;
 }
-.form-group{
+
+.form-group {
   position: relative;
 }
-i.fa{
+
+i.fa {
   position: absolute;
   top: 8px;
   left: 6px;
   font-size: 20px;
 }
-.form-control{
+
+.form-control {
   padding: 6px 30px;
 }
 
-.serverError{
+.serverError {
   text-align: center;
   font-size: 15px;
   color: #802c23;
   margin-top: 20px;
 }
 
-@media screen and (max-width:  780px){
-  .serverError{
+@media screen and (max-width: 780px) {
+  .serverError {
     font-size: 10px;
   }
 }
 
 //Companies Page
-.row{
+.row {
   margin-top: 40px;
   display: flex;
   justify-content: space-between;
 }
-.totalCompanies,
-.listOfCompanies{
+
+section {
   position: relative;
-  width: 45%;
-  .totalCompanies__header,
-  .listOfCompanies__header{
+  width: 46%;
+
+  .header {
     border: 1px solid #ffffff;
     padding: 10px;
     font-weight: bold;
@@ -62,14 +68,19 @@ i.fa{
   }
 
 }
-.totalCompanies__content{
+
+.content {
   display: flex;
   justify-content: center;
-  align-items: center;
-  height: 250px;
+  height: 300px;
   background-color: #ffffff;
   text-align: center;
-  .circle{
+}
+
+.totalCompanies__content {
+  align-items: center;
+
+  .circle {
     display: flex;
     border: 1px solid #1ab394;
     width: 200px;
@@ -80,14 +91,12 @@ i.fa{
     font-size: 60px;
   }
 }
-.listOfCompanies__content{
-  height: 250px;
+
+.listOfCompanies__content {
   overflow-y: scroll;
-  display: flex;
-  justify-content: center;
-  background-color: #ffffff;
-  text-align: center;
+
 }
+
 .loaderArea {
   background: linear-gradient(to top, #98e2d3 3%, #ffffff 90%);
   overflow: hidden;
@@ -97,7 +106,8 @@ i.fa{
   right: 0;
   bottom: 0;
   z-index: 10;
-  .loader{
+
+  .loader {
     width: 20px;
     height: 20px;
     position: absolute;
@@ -105,23 +115,27 @@ i.fa{
     left: 50%;
     border-radius: 50%;
     animation: loader 0.9s 0.35s ease infinite;
-  }&::before,
-   &::after{
-       content: '';
-       width: 20px;
-       height: 20px;
-       position: absolute;
-       top: 50%;
-       left: 40%;
-       border-radius: 50%;
-       animation: loader 0.9s 0.35s ease infinite;
-       animation-delay: 0.2s
-     }
-    &::after{
-      left: 60%;
-      animation-delay: 0.5s;
-    }
+  }
+
+  &::before,
+  &::after {
+    content: '';
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    top: 50%;
+    left: 40%;
+    border-radius: 50%;
+    animation: loader 0.9s 0.35s ease infinite;
+    animation-delay: 0.2s
+  }
+
+  &::after {
+    left: 60%;
+    animation-delay: 0.5s;
+  }
 }
+
 @keyframes loader {
   0% {
     background-color: white;
@@ -133,24 +147,22 @@ i.fa{
 
 //List Of Companies
 
-tr td{
+tr td {
   cursor: pointer;
 }
 
-.test{
-  height: 250px;
-  overflow-y: scroll;
-}
+
 //Partners details
 
-.companyPartners{
+.companyPartners {
   margin: 0 23px 0 23px;
   position: relative;
-  visibility: hidden;
-  transition: visibility 1s linear, opacity 1s linear;
+  display: none;
+  transition: opacity 1s linear;
   opacity: 0;
 }
-.companyPartners__header{
+
+.companyPartners__header {
   margin-top: 40px;
   background-color: #1ab394;
   color: #ffffff;
@@ -159,16 +171,18 @@ tr td{
   display: flex;
   justify-content: space-between;
 }
-i.fa{
+
+i.fa {
   position: absolute;
   top: 2px;
   right: 3px;
   left: 1px;
   font-size: 20px;
 }
+
 .btn__sortValue,
 .btn__sortName,
-.btn__hideButton{
+.btn__hideButton {
   font-family: inherit;
   font-size: inherit;
   line-height: inherit;
@@ -180,47 +194,52 @@ i.fa{
   border: none;
   outline: none;
 }
-.title{
+
+.title {
   text-align: center;
   font-size: 40px;
   color: #4d5567;
 }
-.companyPartners__content{
+
+.companyPartners__content {
   display: flex;
   justify-content: space-between;
   background-color: white;
   padding: 40px auto;
   overflow-x: scroll;
 
-  .partnerInformation{
+  .partnerInformation {
     position: relative;
     display: flex;
     flex-direction: column;
     justify-content: center;
     margin: 20px auto;
     max-height: 400px;
-  .partnerValue{
-    display: flex;
-    width: 100px;
-    height: 100px;
-    border-radius: 50px;
-    border: 1px solid #1ab394;
-    align-items: center;
-    justify-content: center;
-    font-size: 30px;
+
+    .partnerValue {
+      display: flex;
+      width: 100px;
+      height: 100px;
+      border-radius: 50px;
+      border: 1px solid #1ab394;
+      align-items: center;
+      justify-content: center;
+      font-size: 30px;
+    }
+
+    .partnerName {
+      border: 1px solid #1ab394;
+      writing-mode: vertical-lr;
+      text-align: center;
+      min-width: 30px;
+      min-height: 200px;
+      margin: 0 auto;
+      font-size: 30px;
+      padding: 10px;
+      transform: rotate(180deg);
+    }
   }
-  .partnerName{
-    border: 1px solid #1ab394;
-    writing-mode: vertical-lr;
-    text-align: center;
-    min-width: 30px;
-    min-height: 200px;
-    margin: 0 auto;
-    font-size: 30px;
-    padding: 10px;
-    transform: rotate(180deg);
-  }
-  }
+
   .arrow {
     border: 1px solid #1ab394;
     background-color: #1ab394;
@@ -239,6 +258,7 @@ i.fa{
       top: 97px;
       right: 44px;
     }
+
     &::after {
       content: '';
       height: 18px;
@@ -254,14 +274,35 @@ i.fa{
   }
 }
 
-.visible{
-  visibility: visible;
+.visible {
+  display: block;
   opacity: 1;
 }
 
+.location__content {
+  flex-direction: column;
 
+  .countryTitle {
+    text-align: center;
+    color: #4d5567;
+    padding: 8px;
+    font-size: 24px;
+  }
+}
 
+.back__btn {
+  display: none;
+  position: absolute;
+  left: 7%;
+  top: 15%;
+  background: none;
+  border: none;
+  outline: none;
 
+  &:focus {
+    outline: none;
+  }
+}
 
 
 

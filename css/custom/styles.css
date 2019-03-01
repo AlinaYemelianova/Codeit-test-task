@@ -45,33 +45,31 @@ i.fa {
       -ms-flex-pack: justify;
           justify-content: space-between; }
 
-.totalCompanies,
-.listOfCompanies {
+section {
   position: relative;
-  width: 45%; }
-  .totalCompanies .totalCompanies__header,
-  .totalCompanies .listOfCompanies__header,
-  .listOfCompanies .totalCompanies__header,
-  .listOfCompanies .listOfCompanies__header {
+  width: 46%; }
+  section .header {
     border: 1px solid #ffffff;
     padding: 10px;
     font-weight: bold;
     background-color: #1ab394;
     color: #ffffff; }
 
-.totalCompanies__content {
+.content {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  height: 250px;
+  height: 300px;
   background-color: #ffffff;
   text-align: center; }
+
+.totalCompanies__content {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center; }
   .totalCompanies__content .circle {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -89,16 +87,7 @@ i.fa {
     font-size: 60px; }
 
 .listOfCompanies__content {
-  height: 250px;
-  overflow-y: scroll;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  background-color: #ffffff;
-  text-align: center; }
+  overflow-y: scroll; }
 
 .loaderArea {
   background: -webkit-gradient(linear, left bottom, left top, color-stop(3%, #98e2d3), color-stop(90%, #ffffff));
@@ -150,16 +139,12 @@ i.fa {
 tr td {
   cursor: pointer; }
 
-.test {
-  height: 250px;
-  overflow-y: scroll; }
-
 .companyPartners {
   margin: 0 23px 0 23px;
   position: relative;
-  visibility: hidden;
-  -webkit-transition: visibility 1s linear, opacity 1s linear;
-  transition: visibility 1s linear, opacity 1s linear;
+  display: none;
+  -webkit-transition: opacity 1s linear;
+  transition: opacity 1s linear;
   opacity: 0; }
 
 .companyPartners__header {
@@ -283,5 +268,27 @@ i.fa {
       right: 54px; }
 
 .visible {
-  visibility: visible;
+  display: block;
   opacity: 1; }
+
+.location__content {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column; }
+  .location__content .countryTitle {
+    text-align: center;
+    color: #4d5567;
+    padding: 8px;
+    font-size: 24px; }
+
+.back__btn {
+  display: none;
+  position: absolute;
+  left: 7%;
+  top: 15%;
+  background: none;
+  border: none;
+  outline: none; }
+  .back__btn:focus {
+    outline: none; }
