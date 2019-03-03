@@ -17,7 +17,7 @@
 
 </head>
 <body class="gray-bg">
-<div class="middle-box loginscreen   animated fadeInDown">
+<div class="middle-box loginscreen animated fadeInDown signUpForm">
     <div class="title">
         <h2>Sing UP</h2>
         <div class="serverError" id="serverError">
@@ -37,8 +37,8 @@
                     <i class="fa fa-at"></i>
                 </div>
                 <div class="form-group">
-                    <select class="gender form-control" name = "gender" id="gender">
-                        <option value="false" disabled selected>Gender</option>
+                    <select class="gender form-control" name="gender" id="gender">
+                        <option></option>
                         <option value="female">Female</option>
                         <option value="male">Male</option>
                     </select>
@@ -48,7 +48,11 @@
                     <i class="fa fa-key"></i>
                 </div>
                 <div class="form-group">
-                    <div class="checkbox i-checks"><label> <input type="checkbox" name="checkbox" id="checkbox"><i></i>Conditions of Agreement </label></div>
+                    <div class="tac-checkbox-row">
+                        <label>
+                            <input type="checkbox" name="checkbox" id="checkbox" class="i-checks tac-checkbox">Conditions of Agreement
+                        </label>
+                    </div>
                 </div>
                 <button type="submit" class="btn btn-primary block full-width m-b" id="submit-signup">Send</button>
             </form>
